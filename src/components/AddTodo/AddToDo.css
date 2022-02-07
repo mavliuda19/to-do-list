@@ -1,0 +1,21 @@
+.todos{
+    margin: 50px auto;
+    width: 500px;
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.todos input {
+    width: 320px;
+    height: 40px;
+    border-radius: 10px;
+    border:  none;
+    padding: 10px;
+    color: rgb(12, 20, 138);
+    font-size: 20px;
+}
+.todos input:focus{
+    outline: none;
+    background-color: rgb(252, 230, 201);
+}

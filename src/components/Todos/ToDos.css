@@ -1,0 +1,36 @@
+.todo-item {
+	width: 600px;
+	margin: 30px auto;
+	background-color: rgb(82, 93, 126);
+	display: grid;
+	grid-template-columns: 1fr 3fr 1.2fr 1fr;
+	align-items: center;
+	padding: 10px;
+	justify-items: center;
+}
+.checked-inp {
+	width: 30px;
+	height: 20px;
+}
+.items {
+	color: rgb(253, 244, 242);
+	font-size: 20px;
+	list-style: none;
+}
+.completed {
+	text-decoration: line-through;
+	opacity: 0.5;
+	color: black;
+	list-style: none;
+}
+.date{
+	background-color: white;
+	border-radius: 10px;
+	width: 90px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: rgb(94, 94, 180);
+	font-weight: 600;
+}

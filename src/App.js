@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react'
+import './App.css'
 
+import AddToDo from './components/AddTodo/AddToDo'
+import ToDos from './components/Todos/ToDos'
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [todos, setTodos] = useState([])
+
+	useEffect(() => {
+		const localData = JSON.parse(localStorage.getItem('todos'))
+		setTodos(localData || [])
+	}, [])
+
+	const AddToDohandler = (inputText) => {
+		setTodos((prevState) => {
+			return [
+				...prevState,
+				{
+					text: inputText,
+					date: new Date().toLocaleDateString(),
+					completed: false,
+					id: Math.random().toString(),
+				},
+			]
+		})
+	}
+
+	useEffect(() => {
+		localStorage.setItem('todos', JSON.stringify(todos))
+	}, [todos])
+
+	let noFoundGoal = <p className='no-found'>No Goals found. Maybe add one?</p>
+
+	if (todos.length > 0) {
+		noFoundGoal = <ToDos todos={todos} setTodos={setTodos} />
+	}
+
+	return (
+		<div className='App'>
+			<AddToDo onAddTodo={AddToDohandler} />
+			{noFoundGoal}
+		</div>
+	)
 }
 
-export default App;
+export default App
