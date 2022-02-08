@@ -1,7 +1,8 @@
 import './AddToDo.css'
-import { useReducer } from 'react'
+import { useContext, useReducer } from 'react'
 import ErrorModal from '../UI/Modal'
 import Button from '../UI/Button'
+import ToDoContext from '../../store/todo-context'
 
 const inputReducer = (state, action) => {
 	if (action.type === 'TODO_INPUT') {
@@ -32,7 +33,9 @@ const inputReducer = (state, action) => {
 	}
 }
 
-const AddToDo = (props) => {
+const AddToDo = () => {
+	const contextTodo = useContext(ToDoContext)
+
 	const [inputState, dispatchInput] = useReducer(inputReducer, {
 		value: '',
 		isValid: false,
@@ -48,7 +51,7 @@ const AddToDo = (props) => {
 			dispatchInput({ type: 'CONFIRM' })
 			return
 		}
-		props.onAddTodo(inputState.value)
+		contextTodo.onAddTodo(inputState.value)
 		dispatchInput(inputState.isValid)
 	}
 
